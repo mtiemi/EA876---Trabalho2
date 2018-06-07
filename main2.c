@@ -131,22 +131,7 @@ void* blur_primeira_metade(void *arg)
 	int n_thread = (*N);
 	pthread_t threads[n_thread];
   	int thread_args[n_thread];
-  	
- 	if(n_thread == 0)
-	{
-		thread_args[n_thread] = n_thread;
-		pthread_create(&(threads[n_thread]), NULL, blur_segunda_metade, &(thread_args[n_thread]));
-	}
-	if(n_thread == 1)
-	{
-		thread_args[n_thread] = n_thread;
-		pthread_create(&(threads[n_thread]), NULL, blur_segunda_metade, &(thread_args[n_thread]));
-	}
-	if(n_thread == 2)
-	{
-		thread_args[n_thread] = n_thread;
-		pthread_create(&(threads[n_thread]), NULL, blur_segunda_metade, &(thread_args[n_thread]));             
-	}   
+     
 	
     for(int i = 0; i < (img.width/2); i++) 
     {
@@ -168,7 +153,10 @@ void* blur_primeira_metade(void *arg)
         }
     } 
     
-    
+
+	thread_args[n_thread] = n_thread;
+	pthread_create(&(threads[n_thread]), NULL, blur_segunda_metade, &(thread_args[n_thread]));
+	
     return NULL;
 }
 
@@ -183,12 +171,6 @@ int main()
  // scanf("%s", nome_arquivo);
   img = abrir_imagem("imgs_test/cachorro.jpg");
   img_out = abrir_imagem("imgs_test/cachorro.jpg");
-  
-  img_out.r = (float*)malloc(img.height * img.width * sizeof(float)); 
-
-  img_out.b = (float*)malloc(img.height * img.width * sizeof(float)); 
-  
-  img_out.g = (float*)malloc(img.height * img.width * sizeof(float)); 
   
   start = clock();
 
@@ -213,6 +195,8 @@ int main()
   printf("Tempo gasto:%f ms\n", 1000*(double)(end - start)/CLOCKS_PER_SEC); 
   
   salvar_imagem("imgs_test/cachorro-thread.jpg", &img_out);
+  
+  liberar_imagem(&img);
   liberar_imagem(&img_out);
   
   return 0;
