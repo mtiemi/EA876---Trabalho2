@@ -3,17 +3,22 @@ dir=imgs_test/*
 #echo $dir
 input=`find $dir -maxdepth 0 -name '*.jpg'`
 cont=0
+max=0
 
 #echo $input
 rm output.out
 for t in $input
 do
   #echo $t
-  echo $t > input.in
-  ./$1 < input.in >> output.out
-  ./$2 < input.in >> output.out
-  ./$3 < input.in >> output.out
-  echo "" >> output.out
+  #for i in `seq 2 $max`
+  for i in 0 1 2 3 4 5 6 7 8 9
+  do
+    echo $t > input.in
+    ./$1 < input.in >> output.out
+    ./$2 < input.in >> output.out
+    ./$3 < input.in >> output.out
+    echo "" >> output.out
+  done
   #cat input.in
 done
 
