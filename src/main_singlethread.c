@@ -136,19 +136,17 @@ int main()
   //printf("main_singlethread: %s\n", input_nome_arquivo);
 
   start = clock();
-
   blur(img_out);
-
   end = clock();
 
-  // printf("Arquivo da imagem: %s\n", input_nome_arquivo);
-  // printf("Resolução: %dpixels %dpixels\n", img.width, img.height);
-  // printf("Tamanho da matriz de convolução:%dx%d\n", tamanho_blur, tamanho_blur);
-  // printf("Estratégia: Linha de execução única\n");
-  // printf("Tempo gasto:%f ms\n", 1000*(double)(end - start)/CLOCKS_PER_SEC);
-  // printf("----------------------------------------\n");
-  //printf("%s ,%f",input_nome_arquivo, 1000*(double)(end - start)/CLOCKS_PER_SEC);
-  printf("%s; %d pixels x %d pixels; %dx%d; %f ", input_nome_arquivo, img.width, img.height, tamanho_blur, tamanho_blur, 1000*(double)(end - start)/CLOCKS_PER_SEC);
+  printf("Arquivo da imagem: %s\n", input_nome_arquivo);
+  printf("Resolução: %dpixels %dpixels\n", img.width, img.height);
+  printf("Tamanho da matriz de convolução:%dx%d\n", tamanho_blur, tamanho_blur);
+  printf("Estratégia: Linha de execução única\n");
+  printf("Tempo gasto:%f ms\n", 1000*(double)(end - start)/CLOCKS_PER_SEC);
+  printf("----------------------------------------\n");
+  printf("%s ,%f",input_nome_arquivo, 1000*(double)(end - start)/CLOCKS_PER_SEC);
+  //printf("%s; %d pixels x %d pixels; %dx%d; %f ", input_nome_arquivo, img.width, img.height, tamanho_blur, tamanho_blur, 1000*(double)(end - start)/CLOCKS_PER_SEC);
 
   //ptr = strstr(input_nome_arquivo, "img0");
   strtok_r(input_nome_arquivo, "/", &ptr);

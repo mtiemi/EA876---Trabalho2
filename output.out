@@ -1,15 +1,7 @@
-imgs_test/cachorro.jpg; 1920 pixels x 1280 pixels; 10x10; 6313.462000 main_singlethread: imgs_test/cachorro.jpg
-Arquivo da imagem (0): imgs_test/cachorro.jpg
-Arquivo da imagem (1): imgs_test/cachorro.jpg
-Arquivo da imagem (2): imgs_test/cachorro.jpg
-Arquivo da imagem: imgs_test/cachorro.jpg
-;6496.370000
-imgs_test/results/multithread_cachorro.jpg
-;3.433000 ;[ms]
-imgs_test/cachorro.jpg; 1920 pixels x 1280 pixels; 10x10; 5896.361000 main_singlethread: imgs_test/cachorro.jpg
-Arquivo da imagem (0): imgs_test/cachorro.jpg
-Arquivo da imagem (1): imgs_test/cachorro.jpg
-Arquivo da imagem (2): imgs_test/cachorro.jpg
-Arquivo da imagem: imgs_test/cachorro.jpg
-;5864.590000
-imgs_test/results/multithread_cachorro.jpg
+imgs_test/cachorro.jpg; 1920 pixels x 1280 pixels; 10x10; 6106.279000 ;5994.600000;2.278000 ;[ms]
+imgs_test/cachorro.jpg; 1920 pixels x 1280 pixels; 10x10; 5702.927000 ;5556.889000;2.339000 ;[ms]
+imgs_test/cachorro.jpg; 1920 pixels x 1280 pixels; 10x10; 5540.007000 ;5019.540000;2.047000 ;[ms]
+imgs_test/cachorro.jpg; 1920 pixels x 1280 pixels; 10x10; 5440.451000 ;5131.425000;2.211000 ;[ms]
+imgs_test/cachorro.jpg; 1920 pixels x 1280 pixels; 10x10; 5790.807000 ;5292.068000;2.991000 ;[ms]
+imgs_test/img001.jpg; 1920 pixels x 1280 pixels; 10x10; 5789.544000 ;6759.977000;2.462000 ;[ms]
+imgs_test/img001.jpg; 1920 pixels x 1280 pixels; 10x10; 11969.747000 ;6005.950000

@@ -231,13 +231,13 @@ int main()
     }
   }
 
-  // printf("Arquivo da imagem: %s\n", input_nome_arquivo);
-  // printf("Resolução: %dpixels %dpixels\n", img.width, img.height);
-  // printf("Tamanho da matriz de convolução:%dx%d\n", tamanho_blur, tamanho_blur);
-  // printf("Estratégia: Processos, 6 processos\n");
-  // printf("Tempo gasto:%f ms\n", 1000*(double)(end - start)/CLOCKS_PER_SEC);
-  // printf("----------------------------------------\n");
-  printf(";%f ;[ms]", 1000*(double)(end - start)/CLOCKS_PER_SEC);
+  printf("Arquivo da imagem: %s\n", input_nome_arquivo);
+  printf("Resolução: %dpixels %dpixels\n", img.width, img.height);
+  printf("Tamanho da matriz de convolução:%dx%d\n", tamanho_blur, tamanho_blur);
+  printf("Estratégia: Processos, 6 processos\n");
+  printf("Tempo gasto:%f ms\n", 1000*(double)(end - start)/CLOCKS_PER_SEC);
+  printf("----------------------------------------\n");
+  //printf(";%f ;[ms]", 1000*(double)(end - start)/CLOCKS_PER_SEC);
 
   strtok_r(input_nome_arquivo, "/", &ptr);
   strcat(output_nome_arquivo, ptr);

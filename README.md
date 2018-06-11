@@ -1,10 +1,10 @@
 # EA876---Trabalho2
-O problema com o qual vamos lidar nesse trabalho é a paralelização de filtros de imagem.
 
-Uma imagem é representada, na máquina, por três matrizes. Cada uma delas se refere a um canal (R, G, B) da imagem. Então, r[i][j], g[i][j] e b[i][j] se referem aos valores de R, G e B do pixel (i,j).
+O trabalho consiste de tres programas que aplicam o filtro blur em uma imagem:
 
-Num filtro blur de tamanho N, novas matrizes r', g' e b' são geradas. Para cada uma delas, o pixel (i,j) recebe o valor da média de todos os pixels da matriz original que estão dentro do quadrado que vai de (i-N, j-N) a (i+N, j+N).
+- main_singlethread.c
+- main_multithread.c
+- main_multiprocess.c
 
-O objetivo técnico do trabalho é fazer um programa de computador que permita identificar se a aplicação de um filtro tipo “blur” em uma imagem é mais rápida se ocorrer em uma única linha de execução, em múltiplas threads ou em múltiplos processos.
-
-Para tal, o grupo deverá implementar as três propostas e então avaliar objetivamente seu tempo de execução em imagens pequenas e em imagens grandes.
+Cada um deles espera como entrada uma string que contem a localizacao da imagem a ser tratada.
+Para poder executar os tres de uma vez para todas a imagens eh necessario executar "make test".

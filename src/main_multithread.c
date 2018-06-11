@@ -180,7 +180,7 @@ int main()
   scanf("%s", input_nome_arquivo);
   img = abrir_imagem(input_nome_arquivo);
   img_out = abrir_imagem(input_nome_arquivo);
-  p//rintf("main_singlethread: %s\n", input_nome_arquivo);
+  //printf("main_singlethread: %s\n", input_nome_arquivo);
 
   start = clock();
 
@@ -200,13 +200,13 @@ int main()
 
   end = clock();
 
-  // printf("Arquivo da imagem: %s\n", input_nome_arquivo);
-  // printf("Resolução: %dpixels %dpixels\n", img.width, img.height);
-  // printf("Tamanho da matriz de convolução:%dx%d\n", tamanho_blur, tamanho_blur);
-  // printf("Estratégia: multithreads, 6 threads\n");
-  // printf("Tempo gasto:%f ms\n", 1000*(double)(end - start)/CLOCKS_PER_SEC);
-  // printf("----------------------------------------\n");
-  printf(";%f", 1000*(double)(end - start)/CLOCKS_PER_SEC);
+  printf("Arquivo da imagem: %s\n", input_nome_arquivo);
+  printf("Resolução: %dpixels %dpixels\n", img.width, img.height);
+  printf("Tamanho da matriz de convolução:%dx%d\n", tamanho_blur, tamanho_blur);
+  printf("Estratégia: multithreads, 6 threads\n");
+  printf("Tempo gasto:%f ms\n", 1000*(double)(end - start)/CLOCKS_PER_SEC);
+  printf("----------------------------------------\n");
+  //printf(";%f", 1000*(double)(end - start)/CLOCKS_PER_SEC);
 
 
 
