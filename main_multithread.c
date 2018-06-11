@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
+#include <string.h>
 
 #define tamanho_blur 10
 imagem img;
@@ -164,42 +165,56 @@ void* blur_primeira_metade(void *arg)
 int main()
 {
   clock_t start, end;
-  char nome_arquivo[20];
+  char input_nome_arquivo[40];
+  char output_nome_arquivo[50] = "imgs_test/results/multithread_";
+  char *ptr;
   pthread_t threads[2];
   int thread_args[2];
-  //scanf("%s", nome_arquivo);
-  img = abrir_imagem("imgs_test/cachorro.jpg");
-  img_out = abrir_imagem("imgs_test/cachorro.jpg");
-  //printf("multithread: %s\n", nome_arquivo);
+
+  //img = abrir_imagem("imgs_test/cachorro.jpg");
+  //img_out = abrir_imagem("imgs_test/cachorro.jpg");
+
+  scanf("%s", input_nome_arquivo);
+  img = abrir_imagem(input_nome_arquivo);
+  img_out = abrir_imagem(input_nome_arquivo);
+  //printf("main_singlethread: %s\n", input_nome_arquivo);
 
   start = clock();
-  //
-  // for (int i = 0; i < 3; i++)
-  // {
-  //   thread_args[i] = i;
-  //   pthread_create(&(threads[i]), NULL, blur_primeira_metade, &(thread_args[i]));
-  // }
-  //
-  // /* Esperando threads terminarem! */
-  // for (int i = 0; i < 3; i++)
-  // {
-  //   pthread_join(threads[i], NULL);
-  // }
+
+  for (int i = 0; i < 3; i++)
+  {
+    thread_args[i] = i;
+    pthread_create(&(threads[i]), NULL, blur_primeira_metade, &(thread_args[i]));
+  }
+
+  /* Esperando threads terminarem! */
+  for (int i = 0; i < 3; i++)
+  {
+    pthread_join(threads[i], NULL);
+  }
 
   end = clock();
 
-  //printf("Arquivo da imagem: %s\n", );
+  // printf("Arquivo da imagem: %s\n", input_nome_arquivo);
   // printf("Resolução: %dpixels %dpixels\n", img.width, img.height);
   // printf("Tamanho da matriz de convolução:%dx%d\n", tamanho_blur, tamanho_blur);
   // printf("Estratégia: threads, 6 threads\n");
   // printf("Tempo gasto:%f ms\n", 1000*(double)(end - start)/CLOCKS_PER_SEC);
   // printf("----------------------------------------\n");
   printf(",%f", 1000*(double)(end - start)/CLOCKS_PER_SEC);
-  printf(",200");
+
+
+
+  //ptr = strstr(input_nome_arquivo, "img0");
+  strtok_r(input_nome_arquivo, "/", &ptr);
+  strcat(output_nome_arquivo, ptr);
+  //printf("\n%s\n", output_nome_arquivo);
+
+  salvar_imagem(output_nome_arquivo, &img_out);
   //salvar_imagem("imgs_test/results/cachorro-thread.jpg", &img_out);
 
   liberar_imagem(&img);
-  //liberar_imagem(&img_out);
+  liberar_imagem(&img_out);
 
   return 0;
 }

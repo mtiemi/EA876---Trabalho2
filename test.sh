@@ -11,18 +11,22 @@ do
   #echo $t
   echo $t > input.in
   ./$1 < input.in >> output.out
+  ./$2 < input.in >> output.out
+  ./$3 < input.in >> output.out
+  echo "" >> output.out
   #cat input.in
 done
 
-rm minha_saida.csv
-#touch minha_saida.csv
-echo "?"
-cont=$((cont+1))
-echo -n $cont >> minha_saida.csv
-#./$1 >> minha_saida.csv
-#./$2 >> minha_saida.csv
-#./$3 >> minha_saida.csv
-echo "" >> minha_saida.csv
+# rm minha_saida.csv
+# #touch minha_saida.csv
+# echo "?"
+# cont=$((cont+1))
+# echo -n $cont >> minha_saida.csv
+# #./$1 >> minha_saida.csv
+# #./$2 >> minha_saida.csv
+# #./$3 >> minha_saida.csv
+# echo "" >> minha_saida.csv
 
 echo "=============="
-cat minha_saida.csv
+# cat minha_saida.csv
+cat output.out

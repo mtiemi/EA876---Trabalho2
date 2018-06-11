@@ -167,15 +167,19 @@ void blur_primeira_metade(int n_processo)
 int main()
 {
   clock_t start, end;
-  char nome_arquivo[20];
+  char input_nome_arquivo[40];
+  char output_nome_arquivo[50] = "imgs_test/results/multiprocess_";
+  char *ptr;
   pid_t filho[2];
 
   /* Definir flags de protecao e visibilidade de memoria */
-    int protection = PROT_READ | PROT_WRITE;
-    int visibility = MAP_SHARED | MAP_ANON;
+  int protection = PROT_READ | PROT_WRITE;
+  int visibility = MAP_SHARED | MAP_ANON;
 
- // scanf("%s", nome_arquivo);
-  img = abrir_imagem("imgs_test/cachorro.jpg");
+  scanf("%s", input_nome_arquivo);
+  img = abrir_imagem(input_nome_arquivo);
+
+  //img = abrir_imagem("imgs_test/cachorro.jpg");
   //printf("main_multiprocess: %s\n", nome_arquivo);
 
   // criando memory map para cada vetor
@@ -198,21 +202,21 @@ int main()
   start = clock();
 
 
-  // for (int i = 0; i < 3; i++)
-  // {
-  // 	filho[i] = fork();
-  // 	if(filho[i] == 0)
-  // 	{
-  // 		blur_primeira_metade(i);
-  // 		exit(0);
-  // 	}
-  //
-  // }
-  //
-  //  for (int i = 0; i < 3; i++)
-  // {
-  //   waitpid(filho[i], NULL, 0);
-  // }
+  for (int i = 0; i < 3; i++)
+  {
+  	filho[i] = fork();
+  	if(filho[i] == 0)
+  	{
+  		blur_primeira_metade(i);
+  		exit(0);
+  	}
+
+  }
+
+   for (int i = 0; i < 3; i++)
+  {
+    waitpid(filho[i], NULL, 0);
+  }
 
   end = clock();
 
@@ -227,15 +231,19 @@ int main()
     }
   }
 
-  //printf("Arquivo da imagem: %s\n", );
+  // printf("Arquivo da imagem: %s\n", input_nome_arquivo);
   // printf("Resolução: %dpixels %dpixels\n", img.width, img.height);
   // printf("Tamanho da matriz de convolução:%dx%d\n", tamanho_blur, tamanho_blur);
   // printf("Estratégia: Processos, 6 processos\n");
   // printf("Tempo gasto:%f ms\n", 1000*(double)(end - start)/CLOCKS_PER_SEC);
   // printf("----------------------------------------\n");
-  //printf(",%f", 1000*(double)(end - start)/CLOCKS_PER_SEC);
-  printf(",300");
-  salvar_imagem("imgs_test/results/cachorro-processo.jpg", &img);
+  printf(",%f ,[ms]", 1000*(double)(end - start)/CLOCKS_PER_SEC);
+
+  strtok_r(input_nome_arquivo, "/", &ptr);
+  strcat(output_nome_arquivo, ptr);
+  //printf("\n%s\n", output_nome_arquivo);
+  salvar_imagem(output_nome_arquivo, &img);
+  //salvar_imagem("imgs_test/results/cachorro-processo.jpg", &img);
   liberar_imagem(&img);
 
 

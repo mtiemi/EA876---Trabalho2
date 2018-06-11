@@ -123,7 +123,7 @@ int main()
   clock_t start, end;
   float *r1, *b1, *g1;
   char input_nome_arquivo[40];
-  char output_nome_arquivo[40] = "imgs_test/results/singlethread_";
+  char output_nome_arquivo[50] = "imgs_test/results/singlethread_";
   char *ptr;
   imagem img_out;
 
@@ -148,10 +148,11 @@ int main()
   // printf("Tempo gasto:%f ms\n", 1000*(double)(end - start)/CLOCKS_PER_SEC);
   // printf("----------------------------------------\n");
   //printf("%s ,%f",input_nome_arquivo, 1000*(double)(end - start)/CLOCKS_PER_SEC);
-  printf("%s, %d pixels x %d pixels, %dx%d, single-thread, %f ms", input_nome_arquivo, img.width, img.height, tamanho_blur, tamanho_blur, 1000*(double)(end - start)/CLOCKS_PER_SEC);
+  printf("%s, %d pixels x %d pixels, %dx%d, %f ", input_nome_arquivo, img.width, img.height, tamanho_blur, tamanho_blur, 1000*(double)(end - start)/CLOCKS_PER_SEC);
 
   //ptr = strstr(input_nome_arquivo, "img0");
-  //strcat(output_nome_arquivo, ptr);
+  strtok_r(input_nome_arquivo, "/", &ptr);
+  strcat(output_nome_arquivo, ptr);
   //printf("\n%s\n", output_nome_arquivo);
   salvar_imagem(output_nome_arquivo, &img_out);
   //salvar_imagem("results/cachorro-out-unica_linha_ex.jpg", &img_out);
