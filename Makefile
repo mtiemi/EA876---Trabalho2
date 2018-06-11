@@ -1,4 +1,4 @@
-	
+
 
 # Macros para teste
 BASH = sh
@@ -12,19 +12,22 @@ EXTENSIONS = *.c *.h *.in *.out *.sh
 
 .PHONY: depend clean
 
-all:main main2 main3
+all:main_singlethread main_multithread main_multiprocess
 
-main:
-	gcc -omain main.c imageprocessing.c -I./ -lfreeimage 
+main_singlethread:
+	gcc -omain_singlethread main_singlethread.c imageprocessing.c -I./ -lfreeimage
 
-main2:
-	gcc -omain2 main2.c imageprocessing.c -I./ -lfreeimage -lpthread
-    	
+main_multithread:
+	gcc -omain_multithread main_multithread.c imageprocessing.c -I./ -lfreeimage -lpthread
+
+main_multiprocess:
+	gcc -omain_multiprocess main_multiprocess.c imageprocessing.c -I./ -lfreeimage
+
 test:all
-	$(BASH) $(TEST_SCRIPT) main
+	$(BASH) $(TEST_SCRIPT) main_singlethread main_multithread main_multiprocess
 
 clean:
-	$(RM) ./main
-	$(RM) ./main2
+	$(RM) ./main_singlethread
+	$(RM) ./main_multithread
+	$(RM) ./main_multiprocess
 	$(RM) /*.o
-
