@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
+#include <string.h>
 
 #define tamanho_blur 10
 imagem img;
@@ -121,13 +122,18 @@ int main()
 {
   clock_t start, end;
   float *r1, *b1, *g1;
-  char nome_arquivo[20];
+  char input_nome_arquivo[40];
+  char output_nome_arquivo[40] = "imgs_test/results/singlethread_";
+  char *ptr;
   imagem img_out;
 
- // scanf("%s", nome_arquivo);
-  img = abrir_imagem("imgs_test/cachorro.jpg");
-  img_out = abrir_imagem("imgs_test/cachorro.jpg");
+  //img = abrir_imagem("imgs_test/cachorro.jpg");
+  //img_out = abrir_imagem("imgs_test/cachorro.jpg");
 
+  scanf("%s", input_nome_arquivo);
+  img = abrir_imagem(input_nome_arquivo);
+  img_out = abrir_imagem(input_nome_arquivo);
+  //printf("main_singlethread: %s\n", input_nome_arquivo);
 
   start = clock();
 
@@ -135,14 +141,20 @@ int main()
 
   end = clock();
 
-  //printf("Arquivo da imagem: %s\n", );
-  printf("Resolução: %dpixels %dpixels\n", img.width, img.height);
-  printf("Tamanho da matriz de convolução:%dx%d\n", tamanho_blur, tamanho_blur);
-  printf("Estratégia: Linha de execução única\n");
-  printf("Tempo gasto:%f ms\n", 1000*(double)(end - start)/CLOCKS_PER_SEC);
-  //printf("%f", 1000*(double)(end - start)/CLOCKS_PER_SEC);
+  // printf("Arquivo da imagem: %s\n", input_nome_arquivo);
+  // printf("Resolução: %dpixels %dpixels\n", img.width, img.height);
+  // printf("Tamanho da matriz de convolução:%dx%d\n", tamanho_blur, tamanho_blur);
+  // printf("Estratégia: Linha de execução única\n");
+  // printf("Tempo gasto:%f ms\n", 1000*(double)(end - start)/CLOCKS_PER_SEC);
+  // printf("----------------------------------------\n");
+  //printf("%s ,%f",input_nome_arquivo, 1000*(double)(end - start)/CLOCKS_PER_SEC);
+  printf("%s, %d pixels x %d pixels, %dx%d, single-thread, %f ms", input_nome_arquivo, img.width, img.height, tamanho_blur, tamanho_blur, 1000*(double)(end - start)/CLOCKS_PER_SEC);
 
-  salvar_imagem("imgs_test/cachorro-out-unica_linha_ex.jpg", &img_out);
+  //ptr = strstr(input_nome_arquivo, "img0");
+  //strcat(output_nome_arquivo, ptr);
+  //printf("\n%s\n", output_nome_arquivo);
+  salvar_imagem(output_nome_arquivo, &img_out);
+  //salvar_imagem("results/cachorro-out-unica_linha_ex.jpg", &img_out);
   liberar_imagem(&img_out);
   liberar_imagem(&img);
 

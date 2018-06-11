@@ -170,33 +170,36 @@ int main()
   //scanf("%s", nome_arquivo);
   img = abrir_imagem("imgs_test/cachorro.jpg");
   img_out = abrir_imagem("imgs_test/cachorro.jpg");
+  //printf("multithread: %s\n", nome_arquivo);
 
   start = clock();
-
-  for (int i = 0; i < 3; i++)
-  {
-    thread_args[i] = i;
-    pthread_create(&(threads[i]), NULL, blur_primeira_metade, &(thread_args[i]));
-  }
-
-  /* Esperando threads terminarem! */
-  for (int i = 0; i < 3; i++)
-  {
-    pthread_join(threads[i], NULL);
-  }
+  //
+  // for (int i = 0; i < 3; i++)
+  // {
+  //   thread_args[i] = i;
+  //   pthread_create(&(threads[i]), NULL, blur_primeira_metade, &(thread_args[i]));
+  // }
+  //
+  // /* Esperando threads terminarem! */
+  // for (int i = 0; i < 3; i++)
+  // {
+  //   pthread_join(threads[i], NULL);
+  // }
 
   end = clock();
 
   //printf("Arquivo da imagem: %s\n", );
-  printf("Resolução: %dpixels %dpixels\n", img.width, img.height);
-  printf("Tamanho da matriz de convolução:%dx%d\n", tamanho_blur, tamanho_blur);
-  printf("Estratégia: threads, 6 threads\n");
-  //printf("Tempo gasto:%f ms\n", 1000*(double)(end - start)/CLOCKS_PER_SEC);
-
-  salvar_imagem("imgs_test/cachorro-thread.jpg", &img_out);
+  // printf("Resolução: %dpixels %dpixels\n", img.width, img.height);
+  // printf("Tamanho da matriz de convolução:%dx%d\n", tamanho_blur, tamanho_blur);
+  // printf("Estratégia: threads, 6 threads\n");
+  // printf("Tempo gasto:%f ms\n", 1000*(double)(end - start)/CLOCKS_PER_SEC);
+  // printf("----------------------------------------\n");
+  printf(",%f", 1000*(double)(end - start)/CLOCKS_PER_SEC);
+  printf(",200");
+  //salvar_imagem("imgs_test/results/cachorro-thread.jpg", &img_out);
 
   liberar_imagem(&img);
-  liberar_imagem(&img_out);
+  //liberar_imagem(&img_out);
 
   return 0;
 }

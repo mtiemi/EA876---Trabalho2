@@ -176,6 +176,7 @@ int main()
 
  // scanf("%s", nome_arquivo);
   img = abrir_imagem("imgs_test/cachorro.jpg");
+  //printf("main_multiprocess: %s\n", nome_arquivo);
 
   // criando memory map para cada vetor
   r1 = (float*) mmap(NULL, sizeof(float)*img.width*img.height, protection, visibility, 0, 0);
@@ -197,21 +198,21 @@ int main()
   start = clock();
 
 
-  for (int i = 0; i < 3; i++)
-  {
-  	filho[i] = fork();
-  	if(filho[i] == 0)
-  	{
-  		blur_primeira_metade(i);
-  		exit(0);
-  	}
-
-  }
-
-   for (int i = 0; i < 3; i++)
-  {
-    waitpid(filho[i], NULL, 0);
-  }
+  // for (int i = 0; i < 3; i++)
+  // {
+  // 	filho[i] = fork();
+  // 	if(filho[i] == 0)
+  // 	{
+  // 		blur_primeira_metade(i);
+  // 		exit(0);
+  // 	}
+  //
+  // }
+  //
+  //  for (int i = 0; i < 3; i++)
+  // {
+  //   waitpid(filho[i], NULL, 0);
+  // }
 
   end = clock();
 
@@ -227,13 +228,14 @@ int main()
   }
 
   //printf("Arquivo da imagem: %s\n", );
-  printf("Resolução: %dpixels %dpixels\n", img.width, img.height);
-  printf("Tamanho da matriz de convolução:%dx%d\n", tamanho_blur, tamanho_blur);
-  printf("Estratégia: Processos, 6 processos\n");
-  printf("Tempo gasto:%f ms\n", 1000*(double)(end - start)/CLOCKS_PER_SEC);
-  //printf("%f", 1000*(double)(end - start)/CLOCKS_PER_SEC);
-
-  salvar_imagem("imgs_test/cachorro-processo.jpg", &img);
+  // printf("Resolução: %dpixels %dpixels\n", img.width, img.height);
+  // printf("Tamanho da matriz de convolução:%dx%d\n", tamanho_blur, tamanho_blur);
+  // printf("Estratégia: Processos, 6 processos\n");
+  // printf("Tempo gasto:%f ms\n", 1000*(double)(end - start)/CLOCKS_PER_SEC);
+  // printf("----------------------------------------\n");
+  //printf(",%f", 1000*(double)(end - start)/CLOCKS_PER_SEC);
+  printf(",300");
+  salvar_imagem("imgs_test/results/cachorro-processo.jpg", &img);
   liberar_imagem(&img);
 
 

@@ -52,9 +52,9 @@ imagem abrir_imagem(char *nome_do_arquivo) {
 }
 
 void liberar_imagem(imagem *I) {
-  //free(I->r);
-  //free(I->g);
-  //free(I->b);
+  free(I->r);
+  free(I->g);
+  free(I->b);
 }
 
 void salvar_imagem(char *nome_do_arquivo, imagem *I) {
