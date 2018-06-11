@@ -1,4 +1,15 @@
-
-
-
-
+imgs_test/cachorro.jpg; 1920 pixels x 1280 pixels; 10x10; 6313.462000 main_singlethread: imgs_test/cachorro.jpg
+Arquivo da imagem (0): imgs_test/cachorro.jpg
+Arquivo da imagem (1): imgs_test/cachorro.jpg
+Arquivo da imagem (2): imgs_test/cachorro.jpg
+Arquivo da imagem: imgs_test/cachorro.jpg
+;6496.370000
+imgs_test/results/multithread_cachorro.jpg
+;3.433000 ;[ms]
+imgs_test/cachorro.jpg; 1920 pixels x 1280 pixels; 10x10; 5896.361000 main_singlethread: imgs_test/cachorro.jpg
+Arquivo da imagem (0): imgs_test/cachorro.jpg
+Arquivo da imagem (1): imgs_test/cachorro.jpg
+Arquivo da imagem (2): imgs_test/cachorro.jpg
+Arquivo da imagem: imgs_test/cachorro.jpg
+;5864.590000
+imgs_test/results/multithread_cachorro.jpg

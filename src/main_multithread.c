@@ -7,6 +7,10 @@
 #include <string.h>
 
 #define tamanho_blur 10
+
+char input_nome_arquivo[40];
+char output_nome_arquivo[50] = "imgs_test/results/multithread_";
+char *ptr;
 imagem img;
 imagem img_out;
 
@@ -166,9 +170,7 @@ void* blur_primeira_metade(void *arg)
 int main()
 {
   clock_t start, end;
-  char input_nome_arquivo[40];
-  char output_nome_arquivo[50] = "imgs_test/results/multithread_";
-  char *ptr;
+
   pthread_t threads[2];
   int thread_args[2];
 
@@ -178,17 +180,19 @@ int main()
   scanf("%s", input_nome_arquivo);
   img = abrir_imagem(input_nome_arquivo);
   img_out = abrir_imagem(input_nome_arquivo);
-  //printf("main_singlethread: %s\n", input_nome_arquivo);
+  p//rintf("main_singlethread: %s\n", input_nome_arquivo);
 
   start = clock();
 
   for (int i = 0; i < 3; i++)
   {
+    //printf("Arquivo da imagem (%d): %s\n",i, input_nome_arquivo);
     thread_args[i] = i;
     pthread_create(&(threads[i]), NULL, blur_primeira_metade, &(thread_args[i]));
   }
 
   /* Esperando threads terminarem! */
+  //printf("Arquivo da imagem: %s\n", input_nome_arquivo);
   for (int i = 0; i < 3; i++)
   {
     pthread_join(threads[i], NULL);
@@ -196,13 +200,13 @@ int main()
 
   end = clock();
 
-  printf("Arquivo da imagem: %s\n", input_nome_arquivo);
-  printf("Resolução: %dpixels %dpixels\n", img.width, img.height);
-  printf("Tamanho da matriz de convolução:%dx%d\n", tamanho_blur, tamanho_blur);
-  printf("Estratégia: multithreads, 6 threads\n");
-  printf("Tempo gasto:%f ms\n", 1000*(double)(end - start)/CLOCKS_PER_SEC);
-  printf("----------------------------------------\n");
-  //printf(";%f", 1000*(double)(end - start)/CLOCKS_PER_SEC);
+  // printf("Arquivo da imagem: %s\n", input_nome_arquivo);
+  // printf("Resolução: %dpixels %dpixels\n", img.width, img.height);
+  // printf("Tamanho da matriz de convolução:%dx%d\n", tamanho_blur, tamanho_blur);
+  // printf("Estratégia: multithreads, 6 threads\n");
+  // printf("Tempo gasto:%f ms\n", 1000*(double)(end - start)/CLOCKS_PER_SEC);
+  // printf("----------------------------------------\n");
+  printf(";%f", 1000*(double)(end - start)/CLOCKS_PER_SEC);
 
 
 
